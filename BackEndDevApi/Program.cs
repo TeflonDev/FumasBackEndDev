@@ -19,6 +19,16 @@ builder.Services.AddSwaggerGen(c =>
 	});
 });
 
+// Add CORS services
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
 
 builder.Services.AddDbContext<BackEndDbContext>(c =>
 {
@@ -40,6 +50,9 @@ app.UseSwaggerUI();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+// Use CORS
+app.UseCors("AllowAll");
 
 app.MapControllers();
 
