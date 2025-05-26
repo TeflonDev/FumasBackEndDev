@@ -48,11 +48,12 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
+app.UseCors("AllowAll");
 
 app.UseAuthorization();
 
 // Use CORS
-app.UseCors("AllowAll");
+
 
 app.MapControllers();
 
