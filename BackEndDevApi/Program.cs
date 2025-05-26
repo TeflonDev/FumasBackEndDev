@@ -39,21 +39,19 @@ builder.Services.AddDbContext<BackEndDbContext>(c =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-//if (app.Environment.IsDevelopment())
-//{
-//    app.UseSwagger();
-//    app.UseSwaggerUI();
-//}
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
+
 app.UseSwagger();
 app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
+
 app.UseCors("AllowAll");
 
 app.UseAuthorization();
-
-// Use CORS
-
 
 app.MapControllers();
 

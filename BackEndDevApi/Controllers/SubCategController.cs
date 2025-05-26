@@ -51,28 +51,28 @@ namespace BackEndDevApi.Controllers
 		}
 
 		[HttpPost]
-		public async Task<ActionResult> Create(SubCateg sub_categ)
+		public async Task<ActionResult> Create(SubCateg sub_sc)
 		{
-			await _backEndDbContext.sub_sc.AddAsync(sub_categ);
+			await _backEndDbContext.sub_sc.AddAsync(sub_sc);
 			await _backEndDbContext.SaveChangesAsync();
 			return Ok(new ApiResponse<SubCateg>
 			{
 				result = true,
 				message = "Subcategory created",
-				data = new List<SubCateg> { sub_categ }
+				data = new List<SubCateg> { sub_sc }
 			});
 		}
 
 		[HttpPut]
-		public async Task<ActionResult> Update(SubCateg sub_categ)
+		public async Task<ActionResult> Update(SubCateg sub_sc)
 		{
-			_backEndDbContext.sub_sc.Update(sub_categ);
+			_backEndDbContext.sub_sc.Update(sub_sc);
 			await _backEndDbContext.SaveChangesAsync();
 			return Ok(new ApiResponse<SubCateg>
 			{
 				result = true,
 				message = "Subcategory updated",
-				data = new List<SubCateg> { sub_categ }
+				data = new List<SubCateg> { sub_sc }
 			});
 		}
 

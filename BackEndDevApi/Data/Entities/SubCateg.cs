@@ -15,6 +15,6 @@ namespace BackEndDevApi.Data.Entities
 		public int? yy { get; set; }
 		public int? pp { get; set; }
 		[Key]
-		public int id { get; set; }	
+		public int? id { get; set; }	
 	}
 }
