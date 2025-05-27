@@ -79,8 +79,8 @@ namespace BackEndDevApi.Controllers
 		[HttpDelete]
 		public async Task<ActionResult> Delete(string code)
 		{
-			var SubCateggetbyid = GetSubCategById(code);
-			if (SubCateggetbyid.Value is null)
+			var entity = _backEndDbContext.sub_sc.FirstOrDefault(x => x.code == code);
+			if (entity == null)
 				return NotFound(new ApiResponse<SubCateg>
 				{
 					result = false,
@@ -88,14 +88,14 @@ namespace BackEndDevApi.Controllers
 					data = new List<SubCateg>()
 				});
 
-			_backEndDbContext.Remove(SubCateggetbyid.Value);
+			_backEndDbContext.sub_sc.Remove(entity);
 			await _backEndDbContext.SaveChangesAsync();
 
 			return Ok(new ApiResponse<SubCateg>
 			{
 				result = true,
 				message = "Subcategory deleted",
-				data = new List<SubCateg> { SubCateggetbyid.Value }
+				data = new List<SubCateg> { entity }
 			});
 		}
 	}
