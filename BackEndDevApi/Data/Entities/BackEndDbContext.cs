@@ -17,5 +17,6 @@ namespace BackEndDevApi.Data.Entities
 		public virtual DbSet<SubCateg> sub_sc { get; set; }
 		public virtual DbSet<Locations> sl { get; set; }
 		public virtual DbSet<Categ> sc { get; set; }
+		public virtual DbSet<Pu> pu { get; set; }	
 	}
 }
