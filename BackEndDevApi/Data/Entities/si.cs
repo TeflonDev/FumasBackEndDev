@@ -7,5 +7,6 @@ namespace BackEndDevApi.Data.Entities
 		[Key]
 		public int sid { get; set; }
 		public string code { get; set; }
+		public string descr {  get; set; }	
 	}
 }
