@@ -1,6 +1,7 @@
 ﻿using BackEndDevApi.Data.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using MySqlX.XDevAPI;
 
 namespace BackEndDevApi.Controllers
@@ -14,7 +15,7 @@ namespace BackEndDevApi.Controllers
 		{
 			_backEndDbContext = backEndDbContext;
 		}
-
+		[Authorize]
 		[HttpGet]
 		public ActionResult<IEnumerable<Accounts>> Getaccounts()
 		{
