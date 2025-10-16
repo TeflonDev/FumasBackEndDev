@@ -46,7 +46,7 @@ namespace BackEndDevApi.Controllers
 			{
 				result = true,
 				message = "Location found",
-				data = new List<Locations	> { item }
+				data = new List<Locations> { item }
 			});
 		}
 
@@ -123,6 +123,39 @@ namespace BackEndDevApi.Controllers
 					data = new List<Locations> { newEntity }
 				});
 			}
+		}
+
+		[HttpPatch("{code}")]
+		public async Task<ActionResult> PartialUpdate(string code, Locations sl)
+		{
+			var entity = _backEndDbContext.sl.FirstOrDefault(x => x.code == code);
+			if (entity == null)
+			{
+				return NotFound(new ApiResponse<Locations>
+				{
+					result = false,
+					message = "Location not found",
+					data = new List<Locations>()
+				});
+			}
+
+			// Update only the fields that are provided and not null in sl
+			if (sl.descr != null) entity.descr = sl.descr;
+			if (sl.clist.HasValue) entity.clist = sl.clist;
+			if (sl.itemcode != null) entity.itemcode = sl.itemcode;
+			if (sl.itemname != null) entity.itemname = sl.itemname;
+			if (sl.profitc != null) entity.profitc = sl.profitc;
+			if (sl.last_updated.HasValue) entity.last_updated = sl.last_updated;
+			if (sl.id.HasValue) entity.id = sl.id;
+
+			await _backEndDbContext.SaveChangesAsync();
+
+			return Ok(new ApiResponse<Locations>
+			{
+				result = true,
+				message = "Location updated",
+				data = new List<Locations> { entity }
+			});
 		}
 
 		[HttpDelete("{code}")]

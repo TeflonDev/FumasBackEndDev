@@ -13,6 +13,7 @@ namespace BackEndDevApi.Data.Entities
 		public string? itemcode { get; set; } = string.Empty;
 		public string? itemname { get; set; } = string.Empty;
 		public string? profitc { get; set; } = string.Empty;
+
 		public DateTime? last_updated { get; set; } = DateTime.Now;
 		public int? id { get; set; }	
 	}
